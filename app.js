@@ -22,7 +22,7 @@ app.get('/search', function(req, res){
 	});
 });
 
-//Directs it to the movieInfo Page
+//Directs it to the movieInfo page
 app.get('/movie', function(req, res) {
 	// res.send('info page reached!');
 	var info = req.query.movieInfo;
