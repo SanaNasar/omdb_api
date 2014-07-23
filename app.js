@@ -11,8 +11,7 @@ app.get('/', function(req, res){
 //Directs to the search page using form action
 app.get('/search', function(req, res){
 	// res.send('search page reached!');//response on the search page
-	var query = req.query.searchTerm;
-  // res.send("search page: " + query);
+	var query = req.query.searchTerm; //query refers to the parameter
 
 	var url = "http://www.omdbapi.com/?s=" + query;
 	request(url, function (error, response, body) {
@@ -22,7 +21,20 @@ app.get('/search', function(req, res){
 		res.render("results.ejs", {movieList: data.Search || [] });
 		}
 	});
+});
 
+app.get('/movie', function(req, res) {
+	// res.send('info page reached!');
+
+	var info = req.query.movieInfo;
+
+	var url = "http://www.omdbapi.com/?i=" + info;
+	request(url, function (error, response, body){
+		if (!error) {
+			var data = JSON.parse(body);
+			res.render("info.ejs", {stuff: data});
+		}
+	});
 });
 
 app.listen(3000);
