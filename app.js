@@ -16,16 +16,15 @@ app.get('/search', function(req, res){
 	var url = "http://www.omdbapi.com/?s=" + query;
 	request(url, function (error, response, body) {
 		if (!error) {
-			// res.send("response recieved: " + body);
 		var data = JSON.parse(body); //Coverting JSON data into javascript
 		res.render("results.ejs", {movieList: data.Search || [] });
 		}
 	});
 });
 
+//Directs it to the movieInfo Page
 app.get('/movie', function(req, res) {
 	// res.send('info page reached!');
-
 	var info = req.query.movieInfo;
 
 	var url = "http://www.omdbapi.com/?i=" + info;
